@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="./node_modules/jquery-ui/css/smoothness/jquery-ui-1.10.0.custom.css"/>
+        <link rel="stylesheet" href="./node_modules/jquery-layout-css/layout-default-latest.css"/>
+        <link rel="stylesheet" href="./window.css"/>
+        <script type="text/javascript" src="./node_modules/jquery-ui/js/jquery-1.9.0.js"></script>
+        <script type="text/javascript" src="./node_modules/jquery-ui/js/jquery-ui-1.10.0.custom.js"></script>
+        <script type="text/javascript" src="./node_modules/jquery-layout/jquery.layout-latest.js"></script>
+        <script>
+            $(document).ready(function() {
+                require("./window.js").main({
+                    API: {
+                        window: window
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="menu" class="ui-layout-north">
+        </div>
+        <iframe id="tool-frame" src="./blank.htm" class="ui-layout-center"></iframe>
+    </body>
+</html>

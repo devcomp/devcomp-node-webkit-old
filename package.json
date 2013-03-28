@@ -1,5 +1,33 @@
 {
+    "uid": "https://github.com/devcomp/devcomp/",
     "name": "devcomp",
     "version": "0.1.1",
-    "pm": "sm"
+    "pm": "sm",
+    "bin": {
+        "devcomp": "./bin/devcomp"
+    },
+    "dependencies": {
+        "pinf": "~0.1.3"
+    },
+    "mappings": {
+        "app-node-webkit": "github.com/freedom-platform/app-node-webkit/~0.1.0",
+        "sm-util": "github.com/sourcemint/sm-util/~0.1.0",
+        "mon": [
+            "sm",
+            "github.com/visionmedia/mon/~1.2.0",
+            {
+                "descriptor": {
+                    "pm": "make",
+                    "bin": {
+                        "mon": "./mon"
+                    }
+                }
+            }
+        ],
+        "devcomp-tool": "github.com/devcomp/devcomp-tool/~0.1.0"
+    },
+    "scripts": {
+        "run": "./bin/devcomp",
+        "install": "make install"
+    }
 }

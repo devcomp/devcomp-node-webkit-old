@@ -1,0 +1,15 @@
+
+
+body {
+	-webkit-app-region: drag;
+}
+
+#menu {
+
+}
+
+#tool-frame {
+	padding: 0px;
+	border: 0px;
+}
+

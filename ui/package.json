@@ -1,0 +1,27 @@
+{
+    "name": "devcomp-ui",
+    "version": "0.1.0",
+    "main": "index.html",
+    "window": {
+        "title": "DeveloperCompanion",
+        "toolbar": false,
+        "position": "center",
+        "width": 800,
+        "height": 400,
+        "resizable": true,
+        "show": false,
+        "toolbar": true
+    },
+    "pm": "sm",
+    "mappings": {
+        "jquery-ui": ["archive", "http://jqueryui.com/resources/download/jquery-ui-1.10.0.custom.zip"],
+        "jquery-layout": ["url", "http://layout.jquery-dev.net/lib/js/jquery.layout-latest.js"],
+        "jquery-layout-css": ["url", "http://layout.jquery-dev.net/lib/css/layout-default-latest.css"],
+        "devcomp-tool-welcome": "github.com/devcomp/devcomp-tool-welcome/~0.1.0"
+    },
+    "config": {
+        "tools": [
+            "github.com/devcomp/devcomp-tool-welcome/~0.1.0"
+        ]
+    }
+}
