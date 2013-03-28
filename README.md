@@ -1,4 +1,4 @@
-*STATUS: DEV**
+*STATUS: DEV*
 
 DeveloperCompanion (devcomp)
 ============================
