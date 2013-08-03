@@ -38,7 +38,8 @@ into which tools are loaded to provide functionality.
 Usage
 -----
 
-	devcomp [-start] /path/to/project
+  export SM_WORKSPACE_HOME=/path/to/project
+	devcomp [-start]
 	# The companion window should launch.
 	devcomp --stop
 
@@ -48,4 +49,4 @@ Troubleshooting
 
   * Close window to restart and thus reload code for good.
   * Double-click on tool menu button to reload tool (NYI).
-  * Tail log for errors and `console.log` messages: `tail -f .devcomp.mon.log`
+  * Tail log for errors and `console.log` messages: `tail -f .rt/log/github.com+devcomp+devcomp++singleton/mon.log`

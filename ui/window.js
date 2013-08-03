@@ -39,7 +39,8 @@ exports.main = function(options) {
 									process: process
 								},
 								GUI: GUI
-							}
+							},
+							config: config
 						});
 						delete toolIframe.contentWindow.__devcomp_sub_context__init;
 					} else {

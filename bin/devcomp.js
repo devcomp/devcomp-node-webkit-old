@@ -1,6 +1,6 @@
 
 const PATH = require("path");
-const FS = require("fs");
+const FS = require("sm-util/lib/fs");
 const PINF = require("pinf").for(module);
 const OS = require("sm-util/lib/os");
 
@@ -8,18 +8,23 @@ const OS = require("sm-util/lib/os");
 exports.main = function(callback) {
 
 	var workspaceHome = process.env.SM_WORKSPACE_HOME;
-	if (!workspaceHome || !PATH.existsSync(workspaceHome)) {
+	if (!workspaceHome || !FS.existsSync(workspaceHome)) {
 		console.error("`SM_WORKSPACE_HOME` not set!");
 		return callback(null);
 	}
 
 	var config = PINF.config();
 
+	var monPidPath = PATH.join(config.pinf.paths.pid, "mon.pid");
+	FS.mkdirsSync(PATH.dirname(monPidPath));
+	var monLogPath = PATH.join(config.pinf.paths.log, "mon.log");
+	FS.mkdirsSync(PATH.dirname(monLogPath));
+
 	if (process.argv.indexOf("--stop") !== -1) {
 
-		if (PATH.existsSync(PATH.join(workspaceHome, ".devcomp.mon.pid"))) {
-			var pid = parseInt(FS.readFileSync(PATH.join(workspaceHome, ".devcomp.mon.pid")).toString());
-			FS.unlinkSync(PATH.join(workspaceHome, ".devcomp.mon.pid"));
+		if (FS.existsSync(monPidPath)) {
+			var pid = parseInt(FS.readFileSync(monPidPath).toString());
+			FS.unlinkSync(monPidPath);
 			process.kill(pid, "SIGTERM");
 		}
 /*
@@ -28,7 +33,7 @@ exports.main = function(callback) {
 		}).then(function(stdout) {
 			if (stdout) {
 				stdout.split("\n").forEach(function(line) {
-					if (line.indexOf(PATH.join(workspaceHome, ".devcomp.mon.pid")) !== -1) {
+					if (line.indexOf(monPidPath) !== -1) {
 						var pid = line.match(/^\S+\s+(\d+)\s+/)[1];
 						process.kill(pid, "SIGTERM");
 					}
@@ -43,8 +48,8 @@ exports.main = function(callback) {
 	//if (process.argv.indexOf("--start") !== -1) {
 
 		return OS.spawnInline("mon", [
-			"--log", PATH.join(workspaceHome, ".devcomp.mon.log"),
-			"--mon-pidfile", PATH.join(workspaceHome, ".devcomp.mon.pid"),
+			"--log", monLogPath,
+			"--mon-pidfile", monPidPath,
 			"--daemonize",
 			PATH.join(__dirname, "../.sm/bin/nw") + " " + PATH.join(__dirname, "../ui")
 		], {
